@@ -46,25 +46,25 @@ app.use(morgan(':method :url :status :response-time ms :data'))
 
 // GET Requests
 
-app.get('api/persons', (req, res) => {
+app.get('/api/persons', (req, res) => {
     res.json(data);
 })
 
-app.get('api/persons/:id', (req, res) => {
+app.get('/api/persons/:id', (req, res) => {
     const id = req.params.id;
     const person = data.persons.find( note => note.id === parseInt(id));
     if(person) res.json(person);
     else res.status(400).json({error: 'Persona no encontrada'})
 })
 
-app.get('api/info', (req, res) => {
-    res.send(`Phonebook has ${data.persons.length} numbers registred
+app.get('/api/info', (req, res) => {
+    res.send(`Ph/onebook has ${data.persons.length} numbers registred
     ${new Date()}`)
 })
 
 // POST Requests
 
-app.use('api/persons', (req,  res, next) => {
+app.use('/api/persons', (req,  res, next) => {
     const {name, number} = req.body;
 
     if(!!name && !!number){ 
@@ -80,7 +80,7 @@ app.use('api/persons', (req,  res, next) => {
     else res.status(400).json({ error: 'El campo nombre o telefono estan vacios o no existen' });
 });
 
-app.post('api/persons', (req, res) => {
+app.post('/api/persons', (req, res) => {
     const id = getId();
     const person = {
         name: req.body.name,
@@ -93,7 +93,7 @@ app.post('api/persons', (req, res) => {
 
 // DELETE Requests
 
-app.delete('api/persons/:id', (req, res) => {
+app.delete('/api/persons/:id', (req, res) => {
     const id = req.params.id;
     data.persons = data.persons.filter( person => person.id !== parseInt(id));
     res.status(204).end();
