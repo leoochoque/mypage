@@ -6,15 +6,21 @@
   "scripts": {
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "phonebook": "nodemon ./phonebook/index.js",
+    "db": "node ./api/mongo.js",
+    "eslint": "eslint --fix"
   },
   "author": "yo",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.18.2",
+    "mongoose": "^6.7.0",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
+    "eslint": "^8.26.0",
     "nodemon": "^2.0.20"
   }
 }
